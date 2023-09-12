@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+# first part is metadata about the thing we are building
+metadata:
+  name: hello-service-deployment
+  labels:
+    app: micro-services-deployment
+# second part is configuration about it
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: micro-services-deployment
+  template:
+    metadata:
+      labels:
+        app: micro-services-deployment
+    spec:
+      containers:
+        - name: hello-service
+          image: yussefmsabeh/hello-service:v1.0.0
+          ports:
+            - containerPort: 80
